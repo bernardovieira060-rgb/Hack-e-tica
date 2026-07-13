@@ -1,0 +1,177 @@
+/* ======================================================
+   PrivAware — login.css
+   Estilos específicos da página de login/cadastro.
+   Reaproveita o mesmo fundo gradiente + padrão de pontos
+   usado na seção Home (.hero) para manter a identidade
+   visual do site.
+   ====================================================== */
+
+   .login-hero {
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 72px 0 96px;
+    min-height: calc(100vh - 140px);
+    display: flex;
+    align-items: center;
+  }
+  
+  .login-hero .hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.10) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  
+  .login-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .login-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 60px rgba(12,38,71,0.35);
+    padding: 40px 36px 32px;
+  }
+  
+  .login-tabs {
+    display: flex;
+    background: var(--blue-light);
+    border-radius: 999px;
+    padding: 4px;
+    margin-bottom: 28px;
+  }
+  
+  .login-tab {
+    flex: 1;
+    background: none;
+    border-radius: 999px;
+    padding: 10px 0;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--text-muted);
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  
+  .login-tab.active {
+    background: var(--navy);
+    color: var(--white);
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  
+  .login-form[hidden] {
+    display: none;
+  }
+  
+  .login-label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+  
+  .login-label .input-wrap {
+    position: relative;
+  }
+  
+  .login-label input {
+    width: 100%;
+    border: 1.5px solid #DCE4F0;
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    font-size: 14px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  
+  .login-label input:focus {
+    border-color: var(--navy);
+  }
+  
+  .login-label input.input-invalid {
+    border-color: #D64545;
+  }
+  
+  .login-error {
+    margin: -6px 0 0;
+    font-size: 12.5px;
+    color: #D64545;
+    font-weight: 600;
+    min-height: 16px;
+  }
+  
+  .login-error:empty {
+    display: none;
+  }
+  
+  .login-success {
+    margin: -6px 0 0;
+    font-size: 12.5px;
+    color: #1E8F5F;
+    font-weight: 600;
+    min-height: 16px;
+  }
+  
+  .login-success:empty {
+    display: none;
+  }
+  
+  .login-submit {
+    width: 100%;
+    margin-top: 6px;
+    text-align: center;
+    font-size: 13px;
+  }
+  
+  .btn-cta-navy {
+    background: var(--navy);
+    color: var(--white);
+  }
+  
+  .btn-cta-navy:hover {
+    background: var(--navy-dark);
+  }
+  
+  .btn-cta-navy:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .login-hint {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 22px 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  
+  .login-hint i {
+    margin-top: 2px;
+    color: var(--navy);
+  }
+  
+  @media (max-width: 480px) {
+    .login-card {
+      padding: 32px 24px 26px;
+    }
+  }

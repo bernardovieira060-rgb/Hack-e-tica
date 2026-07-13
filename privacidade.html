@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacidade</title>
+    <link rel="icon" type="image/png" href="../img/escudo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="../js/menu.js"></script>
+    <style>
+        /* =========================
+           PRIVACIDADE
+        ========================= */
+
+        .privacidade {
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        /* HERO */
+
+        .hero-privacidade {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+
+            padding: 50px;
+            margin-bottom: 50px;
+
+            border-radius: 25px;
+
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #fff;
+        }
+
+        .hero-texto h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .hero-texto p {
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .hero-icon {
+            font-size: 6rem;
+            opacity: .9;
+        }
+
+        /* CARDS */
+
+        .cards-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+
+            margin-bottom: 60px;
+        }
+
+        .info-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, .10);
+            transition: .3s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .info-card i {
+            font-size: 2rem;
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        .info-card h3 {
+            margin-bottom: 10px;
+        }
+
+        /* LGPD */
+
+        .conteudo-lgpd {
+            background: #fff;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+            margin-bottom: 50px;
+        }
+
+        .conteudo-lgpd h2 {
+            color: #2563eb;
+            margin-bottom: 20px;
+        }
+
+        .conteudo-lgpd p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .conteudo-lgpd ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .conteudo-lgpd li {
+            margin: 12px 0;
+            font-weight: 500;
+        }
+
+        /* DICAS */
+
+        .dicas-seguranca h2 {
+            text-align: center;
+            color: #2563eb;
+            margin-bottom: 30px;
+        }
+
+        .dicas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .dica {
+            background: #fff;
+            padding: 30px;
+            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .08);
+            transition: .3s;
+        }
+
+        .dica:hover {
+            transform: translateY(-8px);
+        }
+
+        .dica i {
+            font-size: 2.5rem;
+            color: #2563eb;
+            margin-bottom: 15px;
+        }
+
+        .dica h4 {
+            margin-bottom: 10px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            margin-top: 60px;
+            background: #0f172a;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .footer-col {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+
+        /* RESPONSIVO */
+
+        @media(max-width:768px) {
+
+            .hero-privacidade {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-texto h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-icon {
+                font-size: 4rem;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="app-menu"></div>
+
+    <section class="privacidade">
+
+        <div class="hero-privacidade">
+
+            <div class="hero-texto">
+                <h1>Privacidade Digital</h1>
+
+                <p>
+                    Entenda seus direitos, saiba o que pode ser monitorado
+                    no ambiente corporativo e como proteger seus dados
+                    durante o trabalho remoto.
+                </p>
+            </div>
+
+            <div class="hero-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+
+        </div>
+
+        <div class="cards-info">
+
+            <div class="info-card">
+                <i class="fa-solid fa-eye"></i>
+                <h3>O que pode ser monitorado?</h3>
+                <p>
+                    Sistemas corporativos, acessos à VPN,
+                    e-mails institucionais e ferramentas de trabalho.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <i class="fa-solid fa-lock"></i>
+                <h3>Proteção de Dados</h3>
+                <p>
+                    Seus dados devem ser tratados de forma segura
+                    conforme a LGPD.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <i class="fa-solid fa-user-shield"></i>
+                <h3>Seus Direitos</h3>
+                <p>
+                    Você possui direito à privacidade,
+                    transparência e uso responsável das informações.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <i class="fa-solid fa-user-shield"></i>
+                <h3>O que é Privacidade Digital?</h3>
+                <p>
+                   A privacidade digital é o direito de cada pessoa controlar como seus dados pessoais são coletados, utilizados, armazenados e compartilhados. No ambiente de trabalho, isso significa que as informações do colaborador devem ser tratadas com transparência, segurança e respeito, garantindo que a tecnologia seja utilizada para proteger pessoas e apoiar o desempenho profissional.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <i class="fa-solid fa-user-shield"></i>
+                <h3>Por que a Privacidade é Importante?</h3>
+                <p>
+                    A proteção da privacidade fortalece a confiança entre empresa e colaboradores, reduz riscos de vazamento de informações e cria um ambiente de trabalho mais seguro. Além disso, contribui para a saúde mental ao evitar práticas de monitoramento excessivo que possam gerar ansiedade, estresse e sensação de vigilância constante.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <i class="fa-solid fa-user-shield"></i>
+                <h3>O que a empresa pode monitorar?</h3>
+                <p>
+                    O monitoramento deve ocorrer apenas quando houver necessidade legítima para garantir a segurança da informação e o funcionamento das atividades corporativas.
+
+                    Exemplos
+                    -Login em sistemas corporativos
+                    -Acesso à VPN
+                    -Uso do e-mail institucional
+                    -Equipamentos fornecidos pela empresa
+                    -Sistemas internos de gestão
+                    -Registro de acessos aos servidores
+                </p>
+            </div> 
+
+            <div class="info-card">
+                <i class="fa-solid fa-user-shield"></i>
+                <h3> O que não deve ser monitorado?</h3>
+                <p>
+                    O respeito à vida privada do colaborador é essencial.
+                    
+                    Exemplos
+                    -Conversas pessoais
+                    -Redes sociais particulares
+                    -Aplicativos pessoais
+                    -Webcam ligada continuamente
+                    -Microfone ativo sem necessidade
+                    -Vida pessoal fora do expediente
+                    -Mensagens em dispositivos particulares
+                </p>
+            </div>
+
+            <div class="info-card">
+                <i class="fa-solid fa-user-shield"></i>
+                <h3> Seus Direitos</h3>
+                <p>
+                    Todo colaborador possui direitos relacionados à proteção de seus dados.
+
+                    -Direito à informação
+                    -Direito à transparência
+                    -Direito ao acesso aos próprios dados
+                    -Direito à correção de informações
+                    -Direito à segurança dos dados
+                    -Direito à privacidade
+                    -Direito de solicitar esclarecimentos sobre o -tratamento das informações
+                </p>
+            </div>
+
+            <div class="info-card">
+                <i class="fa-solid fa-user-shield"></i>
+                <h3> Como proteger seus dados</h3>
+                <p>
+                    Adotar boas práticas de segurança reduz significativamente os riscos de ataques virtuais e vazamentos de informações.
+
+                    Recomendações
+                    -Utilize senhas fortes.
+                    -Ative autenticação em dois fatores.
+                    -Nunca compartilhe sua senha.
+                    -Atualize seus dispositivos regularmente.
+                    -Utilize apenas softwares autorizados.
+                    -Faça backup dos arquivos importantes.
+                    -Bloqueie o computador ao se ausentar.
+                    -Evite utilizar redes Wi-Fi públicas.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <i class="fa-solid fa-user-shield"></i>
+                <h3> Privacidade no Home Office</h3>
+                <p>
+                    O trabalho remoto exige cuidados adicionais para garantir a segurança das informações.
+
+                    Boas práticas
+                    -Trabalhe em um ambiente reservado.
+                    -Evite compartilhar o computador corporativo.
+                    -Utilize VPN quando disponível.
+                    -Proteja documentos impressos.
+                    -Mantenha a câmera desligada quando não for   necessária.
+                    -Respeite o horário de trabalho e o direito à desconexão.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <i class="fa-solid fa-user-shield"></i>
+                <h3> Riscos Digitais</h3>
+                <p>
+                    Entre os principais riscos estão:
+
+                    -Phishing
+                    -Vazamento de dados
+                    -Roubo de identidade
+                    -Malware
+                    -Ransomware
+                    -Engenharia social
+                    -Senhas fracas
+                    -Compartilhamento indevido de arquivos
+                </p>
+            </div>
+
+            <div class="info-card">
+                <i class="fa-solid fa-user-shield"></i>
+                <h3> Sinais de um possível golpe</h3>
+                <p>
+                    Fique atento quando receber:
+
+                    -E-mails com links suspeitos.
+                    -Solicitações urgentes de senha.
+                    -Mensagens de remetentes desconhecidos.
+                    -Arquivos anexos inesperados.
+                    -Sites que solicitam informações pessoais sem    necessidade.
+                </p>
+            </div>
+
+            <div class="info-card">
+                <i class="fa-solid fa-user-shield"></i>
+                <h3> O que fazer em caso de incidente?</h3>
+                <p>
+                    Caso suspeite de um problema relacionado à segurança da informação:
+
+                    1. Interrompa imediatamente a atividade.
+                    2. Não compartilhe informações adicionais.
+                    3. Informe o setor de TI.
+                    4. omunique seu gestor.
+                    5. ltere suas senhas caso necessário.
+                    6. Registre o ocorrido pelos canais oficiais.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="conteudo-lgpd">
+
+            <h2>LGPD e Trabalho Remoto</h2>
+
+            <p>
+                A Lei Geral de Proteção de Dados (LGPD) garante
+                que informações pessoais sejam utilizadas apenas
+                para finalidades legítimas e transparentes.
+            </p>
+
+            <ul>
+                <li>✓ Transparência no monitoramento</li>
+                <li>✓ Proteção de dados pessoais</li>
+                <li>✓ Direito à informação</li>
+                <li>✓ Segurança digital</li>
+                <li>✓ Respeito à privacidade</li>
+            </ul>
+
+        </div>
+
+        <div class="dicas-seguranca">
+
+            <h2>Boas Práticas</h2>
+
+            <div class="dicas-grid">
+
+                <div class="dica">
+                    <i class="fa-solid fa-key"></i>
+                    <h4>Senhas Fortes</h4>
+                    <p>Utilize senhas complexas e autenticação em dois fatores.</p>
+                </div>
+
+                <div class="dica">
+                    <i class="fa-solid fa-wifi"></i>
+                    <h4>Redes Seguras</h4>
+                    <p>Evite acessar sistemas corporativos em redes públicas.</p>
+                </div>
+
+                <div class="dica">
+                    <i class="fa-solid fa-laptop"></i>
+                    <h4>Equipamentos</h4>
+                    <p>Mantenha sistemas e antivírus sempre atualizados.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <h3>PrivAware</h3>
+        <ul>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Nosso Propósito</a></li>
+          <li><a href="#">Time de Privacidade</a></li>
+          <li><a href="#">Carreiras</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-col">
+        <h4>PRIVACIDADE</h4>
+        <ul>
+          <li><a href="politicas.html">Políticas</a></li>
+          <li><a href="#">Seus Direitos</a></li>
+          <li><a href="#">Segurança de Dados</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-col">
+        <h4>AJUDA</h4>
+        <ul>
+          <li><a href="#">Central de Ajuda</a></li>
+          <li><a href="#">Fale Conosco</a></li>
+          <li><a href="#">Dúvidas Frequentes</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-col">
+        <h4>RECURSOS</h4>
+        <ul>
+          <li><a href="treinamentos.html">Treinamentos</a></li>
+          <li><a href="#">Materiais</a></li>
+          <li><a href="#">Boas Práticas</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-col footer-app">
+        <h4>BAIXE NOSSO APP</h4>
+        <p><i class="fa-solid fa-mobile-screen-button"></i> Disponível na<br>App Store e Google Play</p>
+      </div>
+    </div>
+  
+    <div class="container footer-bottom">
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Digite seu e-mail" required aria-label="E-mail">
+        <button type="submit">ASSINAR</button>
+      </form>
+      <div class="footer-help">
+        <span>Precisa de ajuda?</span>
+        <a href="suporte.html">Fale conosco</a>
+      </div>
+    </div>
+  </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
