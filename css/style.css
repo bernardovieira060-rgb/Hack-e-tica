@@ -101,8 +101,10 @@
   .site-header {
     background: var(--white);
     border-bottom: 1px solid #EDF1F7;
-    position: relative;
-    z-index: 20;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(18, 51, 99, 0.06);
   }
   
   .header-top {
@@ -111,6 +113,20 @@
     gap: 24px;
     padding-top: 18px;
     padding-bottom: 18px;
+    max-height: 100px;
+    overflow: hidden;
+    transition: max-height 0.28s ease, padding 0.28s ease, opacity 0.2s ease;
+  }
+
+  .site-header.header-compact .header-top {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0;
+  }
+
+  .main-nav {
+    transition: padding 0.28s ease;
   }
   
   .logo {
