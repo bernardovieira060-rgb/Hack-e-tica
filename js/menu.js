@@ -426,12 +426,52 @@
     });
   }
 
+  // ---------- Header "inteligente" ao rolar a página ----------
+  // Descendo: encolhe e mostra só a barra de navegação (mais compacto).
+  // Subindo: volta a mostrar o header inteiro (logo, busca, etc.).
+  function initScrollBehavior() {
+    var header = document.querySelector('.site-header');
+    if (!header) return;
+
+    var lastScrollY = window.scrollY;
+    var ticking = false;
+
+    function onScroll() {
+      var currentScrollY = window.scrollY;
+
+      // No topo da página, sempre mostra o header completo.
+      if (currentScrollY <= 40) {
+        header.classList.remove('header-compact');
+      } else if (currentScrollY > lastScrollY) {
+        // Rolando pra baixo -> compacta.
+        header.classList.add('header-compact');
+      } else {
+        // Rolando pra cima -> mostra tudo de novo.
+        header.classList.remove('header-compact');
+      }
+
+      lastScrollY = currentScrollY;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        window.requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    });
+  }
+
   // Se o DOM já carregou (script no fim da página), monta na hora.
   // Senão espera o DOMContentLoaded.
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', mountMenu);
+    document.addEventListener('DOMContentLoaded', function () {
+      mountMenu();
+      initScrollBehavior();
+    });
   } else {
     mountMenu();
+    initScrollBehavior();
   }
 
 })();
