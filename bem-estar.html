@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrivAware — Bem-estar</title>
+  <link rel="icon" type="image/png" href="../img/escudo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* =========================
+       BEM-ESTAR
+    ========================= */
+
+    .bemestar-hero {
+      background: linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 64px 0 88px;
+    }
+
+    .bemestar-hero .hero-bg-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.10) 1.5px, transparent 1.5px);
+      background-size: 22px 22px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .bemestar-hero-content {
+      position: relative;
+      max-width: 680px;
+    }
+
+    .bemestar-hero h1 {
+      color: var(--white);
+      font-size: 32px;
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .bemestar-hero p {
+      color: rgba(255,255,255,0.85);
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .bemestar-section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 64px 32px;
+    }
+
+    .bemestar-section + .bemestar-section {
+      padding-top: 0;
+    }
+
+    .section-title {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin: 0 0 32px;
+      max-width: 620px;
+    }
+
+    /* CONFIANÇA X VIGILÂNCIA */
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .compare-card {
+      border-radius: var(--radius-lg);
+      padding: 32px;
+    }
+
+    .compare-card.confianca {
+      background: var(--blue-light);
+      border: 1.5px solid #CFE0F7;
+    }
+
+    .compare-card.vigilancia {
+      background: #FBEEEE;
+      border: 1.5px solid #F3D6D6;
+    }
+
+    .compare-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+
+    .confianca .compare-icon {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .vigilancia .compare-icon {
+      background: #C24444;
+      color: var(--white);
+    }
+
+    .compare-card h3 {
+      font-size: 18px;
+      margin-bottom: 14px;
+    }
+
+    .compare-card ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .compare-card li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-dark);
+    }
+
+    .confianca li i {
+      color: var(--navy);
+      margin-top: 3px;
+    }
+
+    .vigilancia li i {
+      color: #C24444;
+      margin-top: 3px;
+    }
+
+    .compare-message {
+      grid-column: 1 / -1;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: var(--radius-md);
+      padding: 20px 28px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* NR-1 */
+
+    .nr1-box {
+      background: #fff;
+      border: 1.5px solid #E5EBF4;
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .nr1-box i {
+      font-size: 32px;
+      color: var(--navy);
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    .nr1-box p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-dark);
+      margin: 0 0 12px;
+    }
+
+    .nr1-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .nr1-tag {
+      background: var(--blue-light);
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+    }
+
+    /* PRIVACY CHECK (autoavaliação) */
+
+    .privacycheck-box {
+      background: #fff;
+      border: 1.5px solid #E5EBF4;
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: 0 10px 30px rgba(18,51,99,0.06);
+    }
+
+    .privacycheck-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 6px;
+    }
+
+    .privacycheck-head i {
+      font-size: 22px;
+      color: var(--navy);
+    }
+
+    .privacycheck-head h3 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .privacycheck-box > p {
+      color: var(--text-muted);
+      font-size: 13.5px;
+      margin: 6px 0 26px;
+    }
+
+    .pc-question {
+      padding: 18px 0;
+      border-top: 1px solid #EDF1F7;
+    }
+
+    .pc-question:first-of-type {
+      border-top: none;
+    }
+
+    .pc-question p {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 12px;
+    }
+
+    .pc-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pc-option {
+      position: relative;
+    }
+
+    .pc-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .pc-option label {
+      display: block;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1.5px solid #DCE4F0;
+      color: var(--text-dark);
+      transition: 0.2s;
+    }
+
+    .pc-option input:checked + label {
+      background: var(--navy);
+      border-color: var(--navy);
+      color: var(--white);
+    }
+
+    .pc-actions {
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .pc-hint-error {
+      font-size: 12.5px;
+      color: #D64545;
+      font-weight: 600;
+      min-height: 16px;
+    }
+
+    .pc-result {
+      margin-top: 26px;
+      border-radius: var(--radius-md);
+      padding: 24px 28px;
+      display: none;
+    }
+
+    .pc-result.show {
+      display: block;
+    }
+
+    .pc-result-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .pc-result h4 {
+      font-size: 20px;
+      margin: 0 0 10px;
+      font-family: var(--font-heading);
+    }
+
+    .pc-result p {
+      font-size: 13.5px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .pc-result.baixo {
+      background: #EAF7EF;
+      border: 1.5px solid #C9EBD6;
+    }
+
+    .pc-result.baixo h4 {
+      color: #1E8F5F;
+    }
+
+    .pc-result.medio {
+      background: #FEF6E7;
+      border: 1.5px solid #F5DFAF;
+    }
+
+    .pc-result.medio h4 {
+      color: #B5790C;
+    }
+
+    .pc-result.alto {
+      background: #FBEEEE;
+      border: 1.5px solid #F3D6D6;
+    }
+
+    .pc-result.alto h4 {
+      color: #C24444;
+    }
+
+    /* CASOS PRÁTICOS */
+
+    .casos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .caso-card {
+      background: #fff;
+      border: 1.5px solid #E5EBF4;
+      border-radius: var(--radius-md);
+      padding: 26px;
+      transition: 0.25s;
+    }
+
+    .caso-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(18,51,99,0.1);
+    }
+
+    .caso-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 14px;
+    }
+
+    .caso-card h4 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    .caso-card p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0 0 14px;
+    }
+
+    .caso-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    .caso-tag.risco {
+      background: #FBEEEE;
+      color: #C24444;
+    }
+
+    .caso-tag.saudavel {
+      background: #EAF7EF;
+      color: #1E8F5F;
+    }
+
+    /* RESPONSIVO */
+
+    @media (max-width: 900px) {
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .casos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nr1-box {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .bemestar-hero h1 {
+        font-size: 26px;
+      }
+
+      .bemestar-section {
+        padding: 44px 20px;
+      }
+
+      .privacycheck-box {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app-menu"></div>
+  <script src="../js/menu.js"></script>
+
+  <!-- ===== HERO ===== -->
+  <section class="bemestar-hero">
+    <div class="hero-bg-pattern" aria-hidden="true"></div>
+    <div class="container bemestar-hero-content">
+      <h1>Você trabalha ou está sendo vigiado?</h1>
+      <p>
+        Ferramentas digitais ajudam a produtividade, mas o monitoramento excessivo
+        pode gerar ansiedade, estresse, perda de privacidade e queda de desempenho.
+        Aqui você entende a diferença entre gestão saudável e vigilância — e descobre
+        como está o seu próprio equilíbrio.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== CONFIANÇA X VIGILÂNCIA ===== -->
+  <section class="bemestar-section container">
+    <h2 class="section-title">Gestão por Confiança x Gestão por Vigilância</h2>
+    <p class="section-sub">Dois modelos de gestão, dois impactos bem diferentes no bem-estar de quem trabalha em home office.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card confianca">
+        <span class="compare-icon"><i class="fa-solid fa-handshake"></i></span>
+        <h3>Gestão por Confiança</h3>
+        <ul>
+          <li><i class="fa-solid fa-circle-check"></i> Foco em resultados, não em horas na frente da tela</li>
+          <li><i class="fa-solid fa-circle-check"></i> Autonomia para organizar a própria rotina</li>
+          <li><i class="fa-solid fa-circle-check"></i> Comunicação clara e aberta com o gestor</li>
+          <li><i class="fa-solid fa-circle-check"></i> Flexibilidade de horário dentro do combinado</li>
+          <li><i class="fa-solid fa-circle-check"></i> Respeito ao direito à desconexão</li>
+        </ul>
+      </div>
+
+      <div class="compare-card vigilancia">
+        <span class="compare-icon"><i class="fa-solid fa-eye"></i></span>
+        <h3>Gestão por Vigilância</h3>
+        <ul>
+          <li><i class="fa-solid fa-circle-xmark"></i> Foco em controle e monitoramento constante</li>
+          <li><i class="fa-solid fa-circle-xmark"></i> Prints de tela ou rastreamento de atividade a todo momento</li>
+          <li><i class="fa-solid fa-circle-xmark"></i> Pressão por resposta imediata, inclusive fora do horário</li>
+          <li><i class="fa-solid fa-circle-xmark"></i> Sensação constante de estar sendo observado</li>
+          <li><i class="fa-solid fa-circle-xmark"></i> Dificuldade real de desconexão no fim do dia</li>
+        </ul>
+      </div>
+
+      <div class="compare-message">
+        <i class="fa-solid fa-lightbulb"></i>
+        Confiança fortalece equipes. Vigilância excessiva pode gerar riscos psicossociais.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NR-1 ===== -->
+  <section class="bemestar-section container">
+    <h2 class="section-title">Relação com a NR-1</h2>
+    <p class="section-sub">O que a norma tem a ver com monitoramento no home office.</p>
+
+    <div class="nr1-box">
+      <i class="fa-solid fa-scale-balanced"></i>
+      <div>
+        <p>
+          A NR-1 determina que as empresas identifiquem e gerenciem os riscos ocupacionais,
+          incluindo os riscos psicossociais. O monitoramento excessivo e a pressão constante
+          podem contribuir para esses riscos quando afetam a saúde e o ambiente de trabalho —
+          por isso a norma também é uma questão de privacidade digital.
+        </p>
+        <div class="nr1-tags">
+          <span class="nr1-tag">Riscos psicossociais</span>
+          <span class="nr1-tag">Saúde ocupacional</span>
+          <span class="nr1-tag">Ambiente de trabalho</span>
+          <span class="nr1-tag">Prevenção</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRIVACY CHECK (AUTOAVALIAÇÃO) ===== -->
+  <section class="bemestar-section container" id="privacycheck">
+    <h2 class="section-title">Autoavaliação — Privacy Check</h2>
+    <p class="section-sub">Responda com sinceridade. No fim, você recebe um resultado com recomendações — nada fica salvo ou enviado pra ninguém.</p>
+
+    <div class="privacycheck-box">
+      <div class="privacycheck-head">
+        <i class="fa-solid fa-clipboard-check"></i>
+        <h3>Como está seu equilíbrio no home office?</h3>
+      </div>
+      <p>5 perguntas rápidas sobre monitoramento, mensagens fora do expediente e desconexão.</p>
+
+      <form id="pcForm">
+
+        <div class="pc-question">
+          <p>1. Você recebe mensagens de trabalho fora do horário de expediente?</p>
+          <div class="pc-options">
+            <div class="pc-option"><input type="radio" name="q1" id="q1a" value="0"><label for="q1a">Nunca</label></div>
+            <div class="pc-option"><input type="radio" name="q1" id="q1b" value="1"><label for="q1b">Às vezes</label></div>
+            <div class="pc-option"><input type="radio" name="q1" id="q1c" value="2"><label for="q1c">Frequentemente</label></div>
+          </div>
+        </div>
+
+        <div class="pc-question">
+          <p>2. Você consegue fazer pausas durante o expediente sem se sentir observado(a)?</p>
+          <div class="pc-options">
+            <div class="pc-option"><input type="radio" name="q2" id="q2a" value="0"><label for="q2a">Sim, sem problema</label></div>
+            <div class="pc-option"><input type="radio" name="q2" id="q2b" value="1"><label for="q2b">Às vezes tenho receio</label></div>
+            <div class="pc-option"><input type="radio" name="q2" id="q2c" value="2"><label for="q2c">Evito fazer pausas</label></div>
+          </div>
+        </div>
+
+        <div class="pc-question">
+          <p>3. Você já sentiu que está sendo monitorado(a) de forma excessiva?</p>
+          <div class="pc-options">
+            <div class="pc-option"><input type="radio" name="q3" id="q3a" value="0"><label for="q3a">Não</label></div>
+            <div class="pc-option"><input type="radio" name="q3" id="q3b" value="1"><label for="q3b">Já pensei nisso</label></div>
+            <div class="pc-option"><input type="radio" name="q3" id="q3c" value="2"><label for="q3c">Sim, frequentemente</label></div>
+          </div>
+        </div>
+
+        <div class="pc-question">
+          <p>4. No fim do expediente, você consegue "desligar" do trabalho?</p>
+          <div class="pc-options">
+            <div class="pc-option"><input type="radio" name="q4" id="q4a" value="0"><label for="q4a">Sim, tranquilamente</label></div>
+            <div class="pc-option"><input type="radio" name="q4" id="q4b" value="1"><label for="q4b">Com dificuldade</label></div>
+            <div class="pc-option"><input type="radio" name="q4" id="q4c" value="2"><label for="q4c">Quase nunca</label></div>
+          </div>
+        </div>
+
+        <div class="pc-question">
+          <p>5. Como você avalia o equilíbrio entre vida pessoal e trabalho hoje?</p>
+          <div class="pc-options">
+            <div class="pc-option"><input type="radio" name="q5" id="q5a" value="0"><label for="q5a">Equilibrado</label></div>
+            <div class="pc-option"><input type="radio" name="q5" id="q5b" value="1"><label for="q5b">Meio desequilibrado</label></div>
+            <div class="pc-option"><input type="radio" name="q5" id="q5c" value="2"><label for="q5c">Muito desequilibrado</label></div>
+          </div>
+        </div>
+
+        <div class="pc-actions">
+          <button type="submit" class="btn btn-navy-solid">VER MEU RESULTADO</button>
+          <span class="pc-hint-error" id="pcError"></span>
+        </div>
+      </form>
+
+      <div class="pc-result" id="pcResult">
+        <span class="pc-result-label" id="pcResultLabel"></span>
+        <h4 id="pcResultTitle"></h4>
+        <p id="pcResultText"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CASOS PRÁTICOS ===== -->
+  <section class="bemestar-section container">
+    <h2 class="section-title">Casos Práticos</h2>
+    <p class="section-sub">Situações reais de home office e como diferentes formas de gestão impactam o bem-estar.</p>
+
+    <div class="casos-grid">
+      <div class="caso-card">
+        <div class="caso-avatar">A</div>
+        <h4>Ana</h4>
+        <p>Seu gestor pede prints da tela a cada poucos minutos, mesmo com as entregas em dia. Ana relata ansiedade e medo de se afastar do computador.</p>
+        <span class="caso-tag risco"><i class="fa-solid fa-triangle-exclamation"></i> Vigilância excessiva</span>
+      </div>
+
+      <div class="caso-card">
+        <div class="caso-avatar">L</div>
+        <h4>Lucas</h4>
+        <p>Recebe mensagens de trabalho até tarde da noite e sente que precisa responder na hora, mesmo fora do expediente combinado.</p>
+        <span class="caso-tag risco"><i class="fa-solid fa-triangle-exclamation"></i> Dificuldade de desconexão</span>
+      </div>
+
+      <div class="caso-card">
+        <div class="caso-avatar">J</div>
+        <h4>Júlia</h4>
+        <p>Tem autonomia para organizar seu dia e é avaliada pelos resultados entregues. Consegue fazer pausas e se desconectar no fim do expediente.</p>
+        <span class="caso-tag saudavel"><i class="fa-solid fa-circle-check"></i> Gestão por confiança</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <h3>PrivAware</h3>
+        <ul>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Nosso Propósito</a></li>
+          <li><a href="#">Time de Privacidade</a></li>
+          <li><a href="#">Carreiras</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>PRIVACIDADE</h4>
+        <ul>
+          <li><a href="politicas.html">Políticas</a></li>
+          <li><a href="privacidade.html">Seus Direitos</a></li>
+          <li><a href="privacidade.html">Segurança de Dados</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>AJUDA</h4>
+        <ul>
+          <li><a href="suporte.html">Central de Ajuda</a></li>
+          <li><a href="duvidas.html">Fale Conosco</a></li>
+          <li><a href="frequentes.html">Dúvidas Frequentes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>RECURSOS</h4>
+        <ul>
+          <li><a href="treinamentos.html">Treinamentos</a></li>
+          <li><a href="treinamentos.html">Materiais</a></li>
+          <li><a href="privacidade.html">Boas Práticas</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-app">
+        <h4>BAIXE NOSSO APP</h4>
+        <p><i class="fa-solid fa-mobile-screen-button"></i> Disponível na<br>App Store e Google Play</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Digite seu e-mail" required aria-label="E-mail">
+        <button type="submit">ASSINAR</button>
+      </form>
+      <div class="footer-help">
+        <span>Precisa de ajuda?</span>
+        <a href="suporte.html">Fale conosco</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+  <script>
+    // ======================================================
+    // Privacy Check — autoavaliação de bem-estar no home office
+    // Soma as respostas (0 a 2 cada) e classifica o risco.
+    // ======================================================
+    (function () {
+      var form = document.getElementById('pcForm');
+      var errorEl = document.getElementById('pcError');
+      var resultEl = document.getElementById('pcResult');
+      var resultLabel = document.getElementById('pcResultLabel');
+      var resultTitle = document.getElementById('pcResultTitle');
+      var resultText = document.getElementById('pcResultText');
+
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        errorEl.textContent = '';
+
+        var perguntas = ['q1', 'q2', 'q3', 'q4', 'q5'];
+        var total = 0;
+
+        for (var i = 0; i < perguntas.length; i++) {
+          var selecionada = form.querySelector('input[name="' + perguntas[i] + '"]:checked');
+          if (!selecionada) {
+            errorEl.textContent = 'Responda todas as perguntas antes de ver o resultado.';
+            return;
+          }
+          total += parseInt(selecionada.value, 10);
+        }
+
+        // total vai de 0 a 10
+        resultEl.classList.remove('baixo', 'medio', 'alto');
+
+        if (total <= 3) {
+          resultEl.classList.add('baixo');
+          resultLabel.textContent = 'Risco Baixo';
+          resultTitle.textContent = 'Seu equilíbrio está preservado';
+          resultText.textContent = 'Seus sinais indicam um ambiente de trabalho saudável, com respeito ao seu tempo e à sua privacidade. Continue observando esses limites e não hesite em falar com o RH se algo mudar.';
+        } else if (total <= 6) {
+          resultEl.classList.add('medio');
+          resultLabel.textContent = 'Risco Médio';
+          resultTitle.textContent = 'Fique atento a alguns sinais';
+          resultText.textContent = 'Alguns pontos merecem atenção, como mensagens fora do horário ou dificuldade de desconexão. Vale conversar com seu gestor sobre expectativas mais claras e revisar a página de Bem-estar com calma.';
+        } else {
+          resultEl.classList.add('alto');
+          resultLabel.textContent = 'Risco Alto';
+          resultTitle.textContent = 'Seu bem-estar pode estar comprometido';
+          resultText.textContent = 'Os sinais indicam sobrecarga e possível excesso de monitoramento. Procure o canal de Suporte ou o RH para conversar sobre isso — identificar o problema é o primeiro passo pra mudar a situação.';
+        }
+
+        resultEl.classList.add('show');
+        resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    })();
+  </script>
+
+</body>
+</html>
