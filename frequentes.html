@@ -363,7 +363,7 @@
       var emptyMsg = document.getElementById('faqEmpty');
       var categories = document.querySelectorAll('.faq-category');
 
-      searchInput.addEventListener('input', function () {
+      function filtrarFAQ() {
         var termo = searchInput.value.trim().toLowerCase();
         var algumVisivel = false;
 
@@ -372,6 +372,9 @@
           var visivel = termo === '' || texto.indexOf(termo) !== -1;
           item.style.display = visivel ? '' : 'none';
           if (visivel) algumVisivel = true;
+
+          // Se veio de uma busca específica, já abre a pergunta encontrada
+          if (visivel && termo !== '') item.classList.add('open');
         });
 
         // Esconde categorias sem nenhuma pergunta visível
@@ -385,7 +388,19 @@
         });
 
         emptyMsg.classList.toggle('show', !algumVisivel);
-      });
+      }
+
+      searchInput.addEventListener('input', filtrarFAQ);
+
+      // Chegou aqui vindo da busca do menu (frequentes.html?q=...)?
+      // Preenche o campo e já filtra na hora.
+      var params = new URLSearchParams(window.location.search);
+      var termoUrl = params.get('q');
+      if (termoUrl) {
+        searchInput.value = termoUrl;
+        filtrarFAQ();
+        searchInput.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     })();
   </script>
 
