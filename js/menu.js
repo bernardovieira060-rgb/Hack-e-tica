@@ -96,6 +96,108 @@
     );
   }
 
+  // ---------- Busca do site (autocomplete do header) ----------
+
+  // Nome bonito da página pra mostrar como "categoria" no resultado
+  var PAGE_LABELS = {
+    'index.html': 'Home',
+    'privacidade.html': 'Privacidade',
+    'bem-estar.html': 'Bem-estar',
+    'suporte.html': 'Suporte',
+    'treinamentos.html': 'Treinamentos',
+    'politicas.html': 'Políticas',
+    'frequentes.html': 'Dúvidas Frequentes',
+    'duvidas.html': 'Fale Conosco',
+    'login.html': 'Cadastrar/Entrar'
+  };
+
+  // Tira acentos e deixa minúsculo, pra busca não falhar por causa de "ã", "ç" etc.
+  function normalize(str) {
+    return (str || '')
+      .toString()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim();
+  }
+
+  // Índice com as principais páginas/seções do site + as perguntas do FAQ.
+  // "hash" leva direto pra uma âncora da página; "query" leva pra
+  // frequentes.html já filtrando pela pergunta certa.
+  var SEARCH_INDEX = [
+    { title: 'Home', page: 'index.html', keywords: 'inicio pagina principal' },
+    { title: 'Temas Mais Acessados', page: 'index.html', keywords: 'temas populares acessados' },
+    { title: 'Jornada do Bem-estar', page: 'index.html', keywords: 'jornada bem estar programa' },
+
+    { title: 'Privacidade Digital', page: 'privacidade.html', keywords: 'privacidade digital monitoramento dados' },
+    { title: 'O que a empresa pode monitorar', page: 'privacidade.html', keywords: 'monitoramento vpn email sistemas corporativos' },
+    { title: 'O que não deve ser monitorado', page: 'privacidade.html', keywords: 'vida pessoal redes sociais webcam microfone' },
+    { title: 'Seus direitos sobre seus dados', page: 'privacidade.html', keywords: 'direitos lgpd transparencia acesso dados' },
+    { title: 'Como proteger seus dados', page: 'privacidade.html', keywords: 'senha autenticacao dois fatores backup' },
+    { title: 'Privacidade no Home Office', page: 'privacidade.html', keywords: 'home office trabalho remoto vpn camera' },
+    { title: 'Riscos Digitais', page: 'privacidade.html', keywords: 'phishing malware ransomware roubo de identidade' },
+    { title: 'Sinais de um possível golpe', page: 'privacidade.html', keywords: 'golpe email suspeito senha urgente' },
+    { title: 'LGPD e Trabalho Remoto', page: 'privacidade.html', keywords: 'lgpd trabalho remoto lei geral protecao de dados' },
+    { title: 'Boas Práticas de Segurança', page: 'privacidade.html', keywords: 'boas praticas seguranca' },
+
+    { title: 'Bem-estar no Trabalho', page: 'bem-estar.html', keywords: 'bem estar trabalho vigilancia confianca' },
+    { title: 'Gestão por Confiança x Vigilância', page: 'bem-estar.html', keywords: 'gestao confianca vigilancia' },
+    { title: 'Relação com a NR-1', page: 'bem-estar.html', keywords: 'nr-1 nr1 risco psicossocial' },
+    { title: 'Privacy Check — Autoavaliação', page: 'bem-estar.html', hash: 'privacycheck', keywords: 'privacy check autoavaliacao teste equilibrio home office' },
+    { title: 'Casos Práticos', page: 'bem-estar.html', keywords: 'casos praticos exemplos' },
+
+    { title: 'Suporte / Fale com o RH', page: 'suporte.html', keywords: 'suporte ajuda rh chat contato canais' },
+
+    { title: 'Treinamentos', page: 'treinamentos.html', keywords: 'treinamentos cursos certificado' },
+    { title: 'Cursos Rápidos', page: 'treinamentos.html', keywords: 'cursos rapidos privacidade lgpd monitoramento etico seguranca gestao por confianca nr-1' },
+    { title: 'Workshops Corporativos', page: 'treinamentos.html', keywords: 'workshop corporativo empresa' },
+    { title: 'Como funciona o certificado', page: 'treinamentos.html', keywords: 'certificado curso conclusao' },
+
+    { title: 'Política de Privacidade — Objetivo', page: 'politicas.html', hash: 'objetivo', keywords: 'objetivo politica de privacidade' },
+    { title: 'Política de Privacidade — LGPD e base legal', page: 'politicas.html', hash: 'lgpd', keywords: 'lgpd base legal' },
+    { title: 'Política de Privacidade — O que é monitorado', page: 'politicas.html', hash: 'monitoramento', keywords: 'monitoramento politica' },
+    { title: 'Política de Privacidade — Seus direitos', page: 'politicas.html', hash: 'direitos', keywords: 'direitos politica' },
+    { title: 'Política de Privacidade — Relação com a NR-1', page: 'politicas.html', hash: 'nr1', keywords: 'nr-1 nr1 politica' },
+    { title: 'Política de Privacidade — Segurança e retenção', page: 'politicas.html', hash: 'seguranca', keywords: 'seguranca retencao de dados' },
+    { title: 'Política de Privacidade — Alterações da política', page: 'politicas.html', hash: 'alteracoes', keywords: 'alteracoes da politica' },
+    { title: 'Política de Privacidade — Contato', page: 'politicas.html', hash: 'contato', keywords: 'contato politica' },
+
+    { title: 'Dúvidas Frequentes', page: 'frequentes.html', keywords: 'faq duvidas frequentes perguntas' },
+    { title: 'Envie sua Dúvida', page: 'duvidas.html', keywords: 'enviar duvida pergunta contato' },
+    { title: 'Cadastrar / Entrar', page: 'login.html', keywords: 'login cadastro entrar conta' },
+
+    // Perguntas do FAQ — ao clicar, abre frequentes.html já filtrado nessa pergunta
+    { title: 'O que a empresa pode monitorar no home office?', page: 'frequentes.html', query: 'o que a empresa pode monitorar no home office' },
+    { title: 'O que a empresa NÃO pode monitorar?', page: 'frequentes.html', query: 'o que a empresa nao pode monitorar' },
+    { title: 'Como sei se estou sendo vigiado(a) de forma excessiva?', page: 'frequentes.html', query: 'sendo vigiado de forma excessiva' },
+    { title: 'O que é a LGPD?', page: 'frequentes.html', query: 'o que e a lgpd' },
+    { title: 'Quais direitos eu tenho sobre meus dados?', page: 'frequentes.html', query: 'quais direitos eu tenho sobre meus dados' },
+    { title: 'Como proteger meus dados no dia a dia?', page: 'frequentes.html', query: 'como proteger meus dados no dia a dia' },
+    { title: 'O que é a NR-1 e por que ela importa aqui?', page: 'frequentes.html', query: 'o que e a nr-1' },
+    { title: 'O que é o Privacy Check?', page: 'frequentes.html', query: 'o que e o privacy check' },
+    { title: 'Qual a diferença entre gestão por confiança e por vigilância?', page: 'frequentes.html', query: 'gestao por confianca e por vigilancia' },
+    { title: 'Os cursos são pagos?', page: 'frequentes.html', query: 'os cursos sao pagos' },
+    { title: 'Como recebo meu certificado?', page: 'frequentes.html', query: 'como recebo meu certificado' }
+  ];
+
+  // Filtra o índice pelo termo digitado (ignorando página atual, se fizer sentido manter)
+  function searchIndex(termo) {
+    var n = normalize(termo);
+    if (n === '') return [];
+
+    return SEARCH_INDEX.filter(function (item) {
+      var haystack = normalize(item.title) + ' ' + normalize(item.keywords || '') + ' ' + normalize(item.query || '');
+      return haystack.indexOf(n) !== -1;
+    }).slice(0, 8);
+  }
+
+  // Monta a URL final de um item do índice (com âncora ou ?q= quando aplicável)
+  function buildResultUrl(item) {
+    if (item.hash) return item.page + '#' + item.hash;
+    if (item.query) return item.page + '?q=' + encodeURIComponent(item.query);
+    return item.page;
+  }
+
   // HTML do menu (mesmo markup usado no index.html)
   function buildMenuHTML() {
     return (
@@ -106,9 +208,10 @@
           'PrivAware' +
         '</a>' +
 
-        '<form class="search-form" id="appMenuSearchForm">' +
-          '<input type="text" placeholder="Pesquisar" aria-label="Buscar">' +
+        '<form class="search-form" id="appMenuSearchForm" autocomplete="off">' +
+          '<input type="text" id="appMenuSearchInput" placeholder="Pesquisar" aria-label="Buscar" role="combobox" aria-expanded="false" aria-owns="appMenuSearchResults" aria-autocomplete="list">' +
           '<button type="submit" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>' +
+          '<div class="search-results" id="appMenuSearchResults" role="listbox"></div>' +
         '</form>' +
 
         '<div class="header-actions">' +
@@ -209,19 +312,117 @@
     });
   }
 
-  // Busca do topo (dentro do menu)
+  // Busca do topo (dentro do menu): mostra sugestões enquanto digita
+  // e leva pra página/seção certa (ou pro FAQ já filtrado, como último recurso).
   function initSearch() {
     var form = document.getElementById('appMenuSearchForm');
     if (!form) return;
 
+    var input = document.getElementById('appMenuSearchInput');
+    var resultsBox = document.getElementById('appMenuSearchResults');
+    var activeIndex = -1;
+    var currentResults = [];
+
+    function renderResults(list) {
+      currentResults = list;
+      activeIndex = -1;
+
+      if (list.length === 0) {
+        resultsBox.innerHTML = '<div class="sr-empty">Nenhum resultado. Aperte Enter pra buscar nas Dúvidas Frequentes.</div>';
+      } else {
+        resultsBox.innerHTML = list.map(function (item, i) {
+          var label = PAGE_LABELS[item.page] || item.page;
+          return (
+            '<a href="' + buildResultUrl(item) + '" data-index="' + i + '" role="option">' +
+              '<span class="sr-title">' + item.title + '</span>' +
+              '<span class="sr-page">' + label + '</span>' +
+            '</a>'
+          );
+        }).join('');
+      }
+
+      resultsBox.classList.add('show');
+      input.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeResults() {
+      resultsBox.classList.remove('show');
+      resultsBox.innerHTML = '';
+      input.setAttribute('aria-expanded', 'false');
+      activeIndex = -1;
+      currentResults = [];
+    }
+
+    function highlight(index) {
+      var links = resultsBox.querySelectorAll('a');
+      links.forEach(function (a) { a.classList.remove('active'); });
+      if (index >= 0 && links[index]) {
+        links[index].classList.add('active');
+        links[index].scrollIntoView({ block: 'nearest' });
+      }
+      activeIndex = index;
+    }
+
+    input.addEventListener('input', function () {
+      var termo = input.value.trim();
+      if (termo === '') {
+        closeResults();
+        return;
+      }
+      renderResults(searchIndex(termo));
+    });
+
+    input.addEventListener('focus', function () {
+      if (input.value.trim() !== '') renderResults(searchIndex(input.value));
+    });
+
+    input.addEventListener('keydown', function (e) {
+      if (!resultsBox.classList.contains('show')) return;
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        highlight(Math.min(activeIndex + 1, currentResults.length - 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        highlight(Math.max(activeIndex - 1, 0));
+      } else if (e.key === 'Escape') {
+        closeResults();
+      } else if (e.key === 'Enter' && activeIndex >= 0 && currentResults[activeIndex]) {
+        e.preventDefault();
+        window.location.href = buildResultUrl(currentResults[activeIndex]);
+      }
+    });
+
+    resultsBox.addEventListener('mousedown', function (e) {
+      // mousedown (não click) pra disparar antes do blur do input
+      var link = e.target.closest('a[data-index]');
+      if (!link) return;
+      e.preventDefault();
+      window.location.href = link.getAttribute('href');
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!form.contains(e.target)) closeResults();
+    });
+
+    // Enter direto na caixa (sem escolher sugestão): vai pro primeiro
+    // resultado encontrado ou, se nada bater, cai nas Dúvidas Frequentes.
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var input = form.querySelector('input');
       var termo = input.value.trim();
       if (termo === '') return;
 
-      alert('Buscando por: "' + termo + '"');
-      input.value = '';
+      if (activeIndex >= 0 && currentResults[activeIndex]) {
+        window.location.href = buildResultUrl(currentResults[activeIndex]);
+        return;
+      }
+
+      var matches = searchIndex(termo);
+      if (matches.length > 0) {
+        window.location.href = buildResultUrl(matches[0]);
+      } else {
+        window.location.href = 'frequentes.html?q=' + encodeURIComponent(termo);
+      }
     });
   }
 
