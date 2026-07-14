@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrivAware — Treinamentos</title>
+  <link rel="icon" type="image/png" href="img/escudo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* =========================
+       TREINAMENTOS
+    ========================= */
+
+    .trein-hero {
+      background: linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%);
+      padding: 56px 0 40px;
+    }
+
+    .trein-hero h1 {
+      color: var(--white);
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+
+    .trein-hero p {
+      color: rgba(255,255,255,0.85);
+      font-size: 15px;
+      max-width: 560px;
+      margin: 0;
+    }
+
+    .trein-section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 56px 32px;
+    }
+
+    .trein-section + .trein-section {
+      padding-top: 0;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin: 0 0 28px;
+      max-width: 600px;
+    }
+
+    /* CURSOS */
+
+    .cursos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .curso-card {
+      background: #fff;
+      border: 1.5px solid #E5EBF4;
+      border-radius: var(--radius-md);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      transition: 0.25s;
+    }
+
+    .curso-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(18,51,99,0.1);
+    }
+
+    .curso-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--blue-light);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .curso-card h3 {
+      font-size: 15.5px;
+      margin-bottom: 8px;
+    }
+
+    .curso-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin: 0 0 18px;
+      flex: 1;
+    }
+
+    .curso-meta {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .curso-meta span {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--navy);
+      background: var(--blue-light);
+      padding: 5px 11px;
+      border-radius: 999px;
+    }
+
+    .curso-btn {
+      width: 100%;
+      text-align: center;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 12.5px;
+    }
+
+    .curso-btn.inscrito {
+      background: #EAF7EF;
+      color: #1E8F5F;
+      cursor: default;
+    }
+
+    /* WORKSHOPS */
+
+    .workshop-box {
+      background: var(--blue-light);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .workshop-box i {
+      font-size: 40px;
+      color: var(--navy);
+      flex-shrink: 0;
+    }
+
+    .workshop-box h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .workshop-box p {
+      font-size: 13.5px;
+      color: var(--text-dark);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* CERTIFICADO */
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .cert-item {
+      text-align: center;
+      padding: 28px 20px;
+    }
+
+    .cert-item i {
+      font-size: 26px;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .cert-item h4 {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .cert-item p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      .cursos-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .workshop-box {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .trein-hero h1 {
+        font-size: 24px;
+      }
+
+      .cursos-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app-menu"></div>
+  <script src="js/menu.js"></script>
+
+  <!-- ===== HERO ===== -->
+  <section class="trein-hero">
+    <div class="container">
+      <h1>Treinamentos</h1>
+      <p>Cursos rápidos e gratuitos sobre privacidade digital, LGPD e monitoramento ético — no seu ritmo, com certificado ao final.</p>
+    </div>
+  </section>
+
+  <!-- ===== CURSOS RÁPIDOS ===== -->
+  <section class="trein-section container">
+    <h2 class="section-title">Cursos Rápidos</h2>
+    <p class="section-sub">Conteúdo direto ao ponto, pensado pra caber na rotina de quem trabalha em home office.</p>
+
+    <div class="cursos-grid" id="cursosGrid">
+      <div class="curso-card">
+        <span class="curso-icon"><i class="fa-solid fa-shield-halved"></i></span>
+        <h3>Privacidade Digital no Home Office</h3>
+        <p>O que pode e o que não pode ser monitorado, e como proteger seus dados trabalhando de casa.</p>
+        <div class="curso-meta"><span>25 min</span><span>Iniciante</span></div>
+        <button type="button" class="btn curso-btn" data-curso="Privacidade Digital no Home Office">INSCREVER-SE</button>
+      </div>
+
+      <div class="curso-card">
+        <span class="curso-icon"><i class="fa-solid fa-file-shield"></i></span>
+        <h3>LGPD na Prática</h3>
+        <p>Entenda seus direitos como titular de dados e como a lei se aplica ao dia a dia corporativo.</p>
+        <div class="curso-meta"><span>30 min</span><span>Iniciante</span></div>
+        <button type="button" class="btn curso-btn" data-curso="LGPD na Prática">INSCREVER-SE</button>
+      </div>
+
+      <div class="curso-card">
+        <span class="curso-icon"><i class="fa-solid fa-eye-slash"></i></span>
+        <h3>Monitoramento Ético</h3>
+        <p>Como empresas podem acompanhar resultados sem invadir a privacidade dos colaboradores.</p>
+        <div class="curso-meta"><span>20 min</span><span>Intermediário</span></div>
+        <button type="button" class="btn curso-btn" data-curso="Monitoramento Ético">INSCREVER-SE</button>
+      </div>
+
+      <div class="curso-card">
+        <span class="curso-icon"><i class="fa-solid fa-lock"></i></span>
+        <h3>Segurança da Informação</h3>
+        <p>Senhas fortes, autenticação em dois fatores e como reconhecer tentativas de phishing.</p>
+        <div class="curso-meta"><span>35 min</span><span>Iniciante</span></div>
+        <button type="button" class="btn curso-btn" data-curso="Segurança da Informação">INSCREVER-SE</button>
+      </div>
+
+      <div class="curso-card">
+        <span class="curso-icon"><i class="fa-solid fa-handshake"></i></span>
+        <h3>Gestão por Confiança</h3>
+        <p>Como líderes podem avaliar performance com foco em resultado, sem recorrer à vigilância.</p>
+        <div class="curso-meta"><span>28 min</span><span>Gestores</span></div>
+        <button type="button" class="btn curso-btn" data-curso="Gestão por Confiança">INSCREVER-SE</button>
+      </div>
+
+      <div class="curso-card">
+        <span class="curso-icon"><i class="fa-solid fa-heart-pulse"></i></span>
+        <h3>Bem-estar e Riscos Psicossociais (NR-1)</h3>
+        <p>Como identificar sinais de sobrecarga e o que a NR-1 exige das empresas nesse tema.</p>
+        <div class="curso-meta"><span>32 min</span><span>Intermediário</span></div>
+        <button type="button" class="btn curso-btn" data-curso="Bem-estar e Riscos Psicossociais">INSCREVER-SE</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORKSHOPS ===== -->
+  <section class="trein-section container">
+    <h2 class="section-title">Workshops Corporativos</h2>
+    <p class="section-sub">Pra equipes de RH e TI que querem aprofundar o tema com a empresa toda.</p>
+
+    <div class="workshop-box">
+      <i class="fa-solid fa-people-group"></i>
+      <div>
+        <h3>Leve a PrivAware pra dentro da sua empresa</h3>
+        <p>
+          Workshops presenciais ou online sob agendamento, voltados pra equipes de RH, TI e gestores,
+          com foco em privacidade digital, monitoramento ético e prevenção de riscos psicossociais
+          conforme a NR-1. Fale com a gente pelo canal de Suporte pra montar uma proposta.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CERTIFICADO ===== -->
+  <section class="trein-section container">
+    <h2 class="section-title">Como funciona o certificado</h2>
+
+    <div class="cert-grid">
+      <div class="cert-item">
+        <i class="fa-solid fa-book-open"></i>
+        <h4>1. Faça o curso</h4>
+        <p>No seu ritmo, quando quiser.</p>
+      </div>
+      <div class="cert-item">
+        <i class="fa-solid fa-circle-check"></i>
+        <h4>2. Conclua o conteúdo</h4>
+        <p>Sem provas complicadas.</p>
+      </div>
+      <div class="cert-item">
+        <i class="fa-solid fa-certificate"></i>
+        <h4>3. Receba o certificado</h4>
+        <p>Direto no seu e-mail cadastrado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <h3>PrivAware</h3>
+        <ul>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Nosso Propósito</a></li>
+          <li><a href="#">Time de Privacidade</a></li>
+          <li><a href="#">Carreiras</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>PRIVACIDADE</h4>
+        <ul>
+          <li><a href="politicas.html">Políticas</a></li>
+          <li><a href="privacidade.html">Seus Direitos</a></li>
+          <li><a href="privacidade.html">Segurança de Dados</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>AJUDA</h4>
+        <ul>
+          <li><a href="suporte.html">Central de Ajuda</a></li>
+          <li><a href="duvidas.html">Fale Conosco</a></li>
+          <li><a href="frequentes.html">Dúvidas Frequentes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>RECURSOS</h4>
+        <ul>
+          <li><a href="treinamentos.html">Treinamentos</a></li>
+          <li><a href="treinamentos.html">Materiais</a></li>
+          <li><a href="privacidade.html">Boas Práticas</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-app">
+        <h4>BAIXE NOSSO APP</h4>
+        <p><i class="fa-solid fa-mobile-screen-button"></i> Disponível na<br>App Store e Google Play</p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Digite seu e-mail" required aria-label="E-mail">
+        <button type="submit">ASSINAR</button>
+      </form>
+      <div class="footer-help">
+        <span>Precisa de ajuda?</span>
+        <a href="suporte.html">Fale conosco</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    // ======================================================
+    // Inscrição em cursos — só troca o botão pra "Inscrito"
+    // (fica salvo no localStorage pra continuar assim se
+    // a pessoa voltar na página depois)
+    // ======================================================
+    (function () {
+      var STORAGE_KEY = 'privaware_cursos_inscritos';
+
+      function getInscritos() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function salvarInscritos(lista) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(lista));
+      }
+
+      function marcarComoInscrito(btn) {
+        btn.textContent = 'INSCRITO ✓';
+        btn.classList.add('inscrito');
+        btn.disabled = true;
+      }
+
+      var inscritos = getInscritos();
+      var botoes = document.querySelectorAll('.curso-btn');
+
+      botoes.forEach(function (btn) {
+        var curso = btn.getAttribute('data-curso');
+        if (inscritos.indexOf(curso) !== -1) {
+          marcarComoInscrito(btn);
+        }
+
+        btn.addEventListener('click', function () {
+          if (btn.disabled) return;
+          marcarComoInscrito(btn);
+          inscritos.push(curso);
+          salvarInscritos(inscritos);
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

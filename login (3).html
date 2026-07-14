@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PrivAware — Login</title>
+<link rel="icon" type="image/png" href="img/escudo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<!-- ===== MENU (injetado pelo app.js) ===== -->
+<div id="app-menu"></div>
+<script src="js/menu.js"></script>
+
+<!-- ===== LOGIN ===== -->
+<section class="login-hero">
+  <div class="hero-bg-pattern" aria-hidden="true"></div>
+
+  <div class="container login-wrap">
+    <div class="login-card">
+
+      <div class="login-tabs">
+        <button type="button" class="login-tab active" data-tab="entrar">Entrar</button>
+        <button type="button" class="login-tab" data-tab="cadastro">Criar conta</button>
+      </div>
+
+      <!-- Formulário de login -->
+      <form class="login-form" id="loginForm">
+        <label class="login-label">
+          E-mail
+          <input type="email" name="email" required placeholder="seuemail@exemplo.com" autocomplete="email">
+        </label>
+
+        <label class="login-label">
+          Senha
+          <input type="password" name="password" required placeholder="Sua senha" autocomplete="current-password">
+        </label>
+
+        <p class="login-error" id="loginError"></p>
+
+        <button type="submit" class="btn btn-cta-navy login-submit">ENTRAR</button>
+      </form>
+
+      <!-- Formulário de cadastro -->
+      <form class="login-form" id="cadastroForm" hidden>
+        <label class="login-label">
+          Nome completo
+          <input type="text" name="name" required placeholder="Como podemos te chamar?" autocomplete="name">
+        </label>
+
+        <label class="login-label">
+          E-mail
+          <input type="email" name="email" required placeholder="seuemail@exemplo.com" autocomplete="email">
+        </label>
+
+        <label class="login-label">
+          Senha
+          <input type="password" name="password" required placeholder="Crie uma senha (mín. 6 caracteres)" minlength="6" autocomplete="new-password">
+        </label>
+
+        <p class="login-error" id="cadastroError"></p>
+
+        <button type="submit" class="btn btn-cta-navy login-submit">CRIAR CONTA</button>
+      </form>
+
+      <p class="login-hint">
+        <i class="fa-solid fa-circle-info"></i>
+        Seu login fica salvo neste navegador, então você continua conectado da próxima vez que abrir o site aqui.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-col footer-brand">
+        <h3>PrivAware</h3>
+        <ul>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Nosso Propósito</a></li>
+          <li><a href="#">Time de Privacidade</a></li>
+          <li><a href="#">Carreiras</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-col">
+        <h4>PRIVACIDADE</h4>
+        <ul>
+          <li><a href="politicas.html">Políticas</a></li>
+          <li><a href="#">Seus Direitos</a></li>
+          <li><a href="#">Segurança de Dados</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-col">
+        <h4>AJUDA</h4>
+        <ul>
+          <li><a href="#">Central de Ajuda</a></li>
+          <li><a href="#">Fale Conosco</a></li>
+          <li><a href="#">Dúvidas Frequentes</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-col">
+        <h4>RECURSOS</h4>
+        <ul>
+          <li><a href="treinamentos.html">Treinamentos</a></li>
+          <li><a href="#">Materiais</a></li>
+          <li><a href="#">Boas Práticas</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-col footer-app">
+        <h4>BAIXE NOSSO APP</h4>
+        <p><i class="fa-solid fa-mobile-screen-button"></i> Disponível na<br>App Store e Google Play</p>
+      </div>
+    </div>
+  
+    <div class="container footer-bottom">
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Digite seu e-mail" required aria-label="E-mail">
+        <button type="submit">ASSINAR</button>
+      </form>
+      <div class="footer-help">
+        <span>Precisa de ajuda?</span>
+        <a href="suporte.html">Fale conosco</a>
+      </div>
+    </div>
+  </footer>
+
+
+<script src="js/login.js"></script>
+</body>
+</html>
