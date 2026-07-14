@@ -12,6 +12,31 @@
   // Como as páginas ficam em /html, o CSS é referenciado subindo uma pasta.
   var CSS_PATH = '../css/style.css';
 
+  // ---------- Sessão (mesma chave usada no login.js) ----------
+  var SESSION_KEY = 'privaware_session';
+
+  function getSession() {
+    try {
+      return JSON.parse(localStorage.getItem(SESSION_KEY));
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem(SESSION_KEY);
+    window.location.href = 'index.html';
+  }
+
+  // Pega as iniciais do nome pra mostrar no "avatar" (ex: "Ana Souza" -> "AS")
+  function getInitials(name) {
+    if (!name) return '?';
+    var parts = name.trim().split(/\s+/);
+    var initials = parts[0].charAt(0);
+    if (parts.length > 1) initials += parts[parts.length - 1].charAt(0);
+    return initials.toUpperCase();
+  }
+
   // Descobre a pasta onde o app.js está (só é usado como referência/debug,
   // não é mais usado pra montar o caminho do CSS)
   var currentScript = document.currentScript;
@@ -49,8 +74,31 @@
   });
   ensureAsset('link', { rel: 'stylesheet', href: CSS_PATH });
 
+  // Bloco de "Cadastrar/Entrar" (visitante) ou nome do usuário (logado)
+  function buildAccountBlock() {
+    var session = getSession();
+
+    if (!session) {
+      return '<a href="login.html" class="login-link">Cadastrar/Entrar</a>';
+    }
+
+    return (
+      '<div class="user-menu" id="appUserMenu">' +
+        '<button class="user-menu-toggle" id="appUserMenuToggle" aria-haspopup="true" aria-expanded="false">' +
+          '<span class="user-avatar">' + getInitials(session.name) + '</span>' +
+          '<span class="user-name">' + (session.name || session.email) + '</span>' +
+          '<i class="fa-solid fa-chevron-down user-caret"></i>' +
+        '</button>' +
+        '<div class="user-menu-dropdown" id="appUserMenuDropdown" hidden>' +
+          '<button type="button" id="appLogoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sair</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
   // HTML do menu (mesmo markup usado no index.html)
-  var menuHTML =
+  function buildMenuHTML() {
+    return (
     '<header class="site-header">' +
       '<div class="header-top container">' +
         '<a href="index.html" class="logo">' +
@@ -65,7 +113,7 @@
 
         '<div class="header-actions">' +
           '<button class="icon-btn" aria-label="Carrinho"><i class="fa-solid fa-cart-shopping"></i></button>' +
-          '<a href="login.html" class="login-link">Cadastrar/Entrar</a>' +
+          buildAccountBlock() +
         '</div>' +
 
         '<button class="menu-toggle" id="appMenuToggle" aria-label="Abrir menu">' +
@@ -85,20 +133,50 @@
         '</ul>' +
         '<button class="btn btn-help" onclick="window.location.href=\'suporte.html\'">PRECISO DE AJUDA</button>' +
       '</nav>' +
-    '</header>';
+    '</header>'
+    );
+  }
 
   // Insere o menu: usa <div id="app-menu"></div> se existir na página,
   // ou coloca no topo do <body> automaticamente.
   function mountMenu() {
     var mount = document.getElementById('app-menu');
     if (mount) {
-      mount.innerHTML = menuHTML;
+      mount.innerHTML = buildMenuHTML();
     } else {
-      document.body.insertAdjacentHTML('afterbegin', menuHTML);
+      document.body.insertAdjacentHTML('afterbegin', buildMenuHTML());
     }
     setActiveLink();
     initToggle();
     initSearch();
+    initUserMenu();
+  }
+
+  // Dropdown do usuário logado (abrir/fechar + sair)
+  function initUserMenu() {
+    var wrap = document.getElementById('appUserMenu');
+    if (!wrap) return;
+
+    var toggle = document.getElementById('appUserMenuToggle');
+    var dropdown = document.getElementById('appUserMenuDropdown');
+    var logoutBtn = document.getElementById('appLogoutBtn');
+
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = !dropdown.hidden;
+      dropdown.hidden = isOpen;
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+
+    document.addEventListener('click', function () {
+      dropdown.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+
+    logoutBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      logout();
+    });
   }
 
   // Marca o link da página atual como ativo, pelo nome do arquivo
