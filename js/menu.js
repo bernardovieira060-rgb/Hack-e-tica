@@ -435,22 +435,27 @@
 
     var lastScrollY = window.scrollY;
     var ticking = false;
+    var THRESHOLD = 10; // ignora tremidas pequenas (trackpad/inércia)
 
     function onScroll() {
       var currentScrollY = window.scrollY;
+      var delta = currentScrollY - lastScrollY;
 
-      // No topo da página, sempre mostra o header completo.
       if (currentScrollY <= 40) {
+        // No topo da página, sempre mostra o header completo.
         header.classList.remove('header-compact');
-      } else if (currentScrollY > lastScrollY) {
-        // Rolando pra baixo -> compacta.
+        lastScrollY = currentScrollY;
+      } else if (delta > THRESHOLD) {
+        // Rolando pra baixo de verdade -> compacta.
         header.classList.add('header-compact');
-      } else {
-        // Rolando pra cima -> mostra tudo de novo.
+        lastScrollY = currentScrollY;
+      } else if (delta < -THRESHOLD) {
+        // Rolando pra cima de verdade -> mostra tudo de novo.
         header.classList.remove('header-compact');
+        lastScrollY = currentScrollY;
       }
+      // Variações menores que o THRESHOLD são ignoradas (evita "piscar").
 
-      lastScrollY = currentScrollY;
       ticking = false;
     }
 
