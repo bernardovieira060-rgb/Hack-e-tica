@@ -367,22 +367,8 @@
   .hero {
     background: linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%);
     position: relative;
-    overflow: visible;
+    overflow: hidden;
     padding: 56px 0 120px;
-  }
-
-  .hero::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -90px;
-    height: 90px;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'><path d='M0,0 C360,100 1080,100 1440,0 L1440,100 L0,100 Z' fill='%230C2647'/></svg>");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    pointer-events: none;
-    z-index: 0;
   }
   
   .hero-bg-pattern {
@@ -954,11 +940,6 @@
   
     .hero-media-stack img {
       max-width: 140px;
-    }
-
-    .hero::after {
-      height: 50px;
-      bottom: -50px;
     }
   
     .menu-grid {
