@@ -243,9 +243,9 @@
   // Insere o menu: usa <div id="app-menu"></div> se existir na página,
   // ou coloca no topo do <body> automaticamente.
   function mountMenu() {
-    var mount = document.getElementById('app-menu');
+    var mount = document.getElementById('app-menu') || document.querySelector('.site-header');
     if (mount) {
-      mount.innerHTML = buildMenuHTML();
+      mount.outerHTML = buildMenuHTML();
     } else {
       document.body.insertAdjacentHTML('afterbegin', buildMenuHTML());
     }
