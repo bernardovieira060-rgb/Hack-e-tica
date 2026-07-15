@@ -340,15 +340,22 @@
     background: var(--white);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 48px;
     padding: 4px 32px 16px;
     max-width: 1180px;
     margin: 0 auto;
+    position: relative;
   }
   
   .main-nav ul {
     display: flex;
     gap: 28px;
+  }
+
+  .main-nav .btn-help {
+    position: absolute;
+    right: 32px;
   }
   
   .main-nav a {
