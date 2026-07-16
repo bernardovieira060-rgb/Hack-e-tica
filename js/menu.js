@@ -205,7 +205,7 @@
       '<div class="header-top container">' +
         '<a href="index.html" class="logo">' +
           '<span class="logo-badge"><i class="fa-solid fa-shield-halved"></i></span>' +
-          'PrivAware' +
+          'Safe Space' +
         '</a>' +
 
         '<form class="search-form" id="appMenuSearchForm" autocomplete="off">' +
